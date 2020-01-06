@@ -9,20 +9,24 @@ import {
   PARAM_SEARCH,
   PATH_BASE,
   PATH_SEARCH,
-} from "../../constants";
-import Search from "../Search";
-import Table from "../Table";
-import Button from '../Button';
-import Loader from "../Loader";
+} from "../constants";
+import Search from "./Search";
+import Table from "./Table";
+import Button from './Button';
+import Loader from "./Loader";
 
-require('./index.css');
+require('./App.css');
 
 /**
- *    High Order Function which
+ *    Higher Order Function
+ *
  *    concats oldHits (the previously cached pages for this searchKey)
  *    with hits (the hits response from a requested page on the server)
  *    stores in cache (results[searchKey]) all the hits computed
  *    and sets isLoading to false
+ *
+ *    @param hits {list} the hits list
+ *    @param page {number} the page number
  */
 
 const updateSearchTopStoriesState = (hits, page) => (prevState) => {
@@ -47,11 +51,11 @@ const updateSearchTopStoriesState = (hits, page) => (prevState) => {
 };
 
 /**
- * High Order Component
+ * Higher Order Component
  * which displays the Component passed as param(error taken out)
  * or the error message depending on the error state
- * @param Component the component to render is error is null
- * @returns {function({error: *, [p: string]: *}): *}
+ * @param Component the component to render if error is null
+ * @returns {function({error: *, [p: string]: *}): *} The component to render
  */
 
 const withError = (Component) => ({error, ...rest}) =>
@@ -63,12 +67,21 @@ const withError = (Component) => ({error, ...rest}) =>
 
 const TableWithError = withError(Table);
 
+/**
+ * Higher Order Component
+ * which displays the Component passed as param(isLoading taken out)
+ * or the Loader Component depending on the isLoading state
+ * @param Component the component to render if isLoading is false
+ * @returns {function({error: *, [p: string]: *}): *} The component to render
+ */
+
 const withLoading = (Component) => ({ isLoading, ...rest }) =>
   isLoading
     ? <Loader>Loading...</Loader>
     : <Component {...rest} />;
 
 const ButtonWithLoading = withLoading(Button);
+
 
 class App extends Component {
 
@@ -84,6 +97,10 @@ class App extends Component {
       isLoading: false,
     };
 
+    /**
+     *    Binding this to the App Class
+     */
+
     this.needsToSearchTopStories = this.needsToSearchTopStories.bind(this);
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
     this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);
@@ -92,10 +109,38 @@ class App extends Component {
     this.onSearchChange = this.onSearchChange.bind(this);
   }
 
+  componentDidMount() {
+    this._isMounted = true;
+    const { searchTerm } = this.state;
+    this.setState({ searchKey: searchTerm });
+    this.fetchSearchTopStories(searchTerm)
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+  /**
+   *      Updates the hits and and the page
+   * @param result
+   */
+
   setSearchTopStories(result) {
     const { hits, page } = result;
+    console.log(hits);
+    console.log(page);
     this.setState(updateSearchTopStoriesState(hits, page));
   }
+
+  /**
+   * Makes a request to the Hacker News API with axios and sets isLoading to true in state during the fetching
+   *
+   * if success, passes result.data to setSearchTopStories to set state appropriately
+   * if failure, sets error object in state
+   *
+   * @param searchTerm {string} the searched term, by default 'redux' (DEFAULT_QUERY constant)
+   * @param page {number} the pageNumber, by default 0
+   */
 
   fetchSearchTopStories(searchTerm, page = 0) {
     this.setState({ isLoading: true }, () => {
@@ -105,6 +150,13 @@ class App extends Component {
     });
   };
 
+  // Table Functions
+
+  /**
+   * Updates the hits list from state by removing the provided id
+   *
+   * @param id : {objectID} to filter from the hits list in state
+   */
 
   onDismiss(id) {
     const isNotId = item => item.objectID !== id;
@@ -119,9 +171,26 @@ class App extends Component {
     });
   };
 
+
+  // Search Functions
+
+  /**
+   * Update the searchTerm in state from event.target.value
+   * @param event {event} the event of the input
+   */
+
   onSearchChange(event) {
-    this.setState({searchTerm: event.target.value});
+    this.setState({ searchTerm: event.target.value });
   };
+
+  /**
+   * Update the searchKey in state from the searchTerm provided in the search input,
+   * then checks if a search is needed (needsToSearchTopStories()),
+   * if needed, makes a new request to the API (fetchSearchTopStories()),
+   * finally, prevents the browser from reloading
+   *
+   * @param event {event} the browser window, to prevent from reloading
+   */
 
   onSearchSubmit(event) {
     const { searchTerm } = this.state;
@@ -132,23 +201,14 @@ class App extends Component {
     event.preventDefault();
   }
 
+  /**
+   * Checks if the requested search has already been stored in cache (results[searchTerm])
+   * @param searchTerm {string} the search term, also used as key to store previous searches in results
+   * @returns {boolean} true if this searched hasn't been stored in cache, otherwise false
+   */
+
   needsToSearchTopStories(searchTerm) {
     return !this.state.results[searchTerm];
-  }
-
-  componentDidMount() {
-    this._isMounted = true;
-    const { searchTerm } = this.state;
-    this.setState({ searchKey: searchTerm });
-    this.fetchSearchTopStories(searchTerm)
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
-
-  if (error) {
-    console.log(error);
   }
 
   render() {
@@ -159,6 +219,8 @@ class App extends Component {
       error,
       isLoading,
     } = this.state;
+
+    if (error) { console.error(error) }
 
     const page = (
       results
@@ -178,12 +240,11 @@ class App extends Component {
             onChange={this.onSearchChange}
             onSubmit={this.onSearchSubmit}
           >
-            Search
+            Rechercher
           </Search>
         </div>
           <TableWithError
             error={error}
-            onSort={this.onSort}
             list={list}
             onDismiss={this.onDismiss}
           />
@@ -192,7 +253,7 @@ class App extends Component {
             isLoading={isLoading}
             onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}
           >
-            More
+            Plus d'articles
           </ButtonWithLoading>
         </div>
       </div>

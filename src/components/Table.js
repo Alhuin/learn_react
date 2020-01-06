@@ -1,8 +1,10 @@
 import React from "react";
-import Button from '../Button';
+import Button from './Button';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {sortBy} from 'lodash';
+
+require('./Table.css');
 
 const SORTS = {
   NONE: list => list,
@@ -10,18 +12,6 @@ const SORTS = {
   AUTHOR: list => sortBy(list, 'author'),
   COMMENTS: list => sortBy(list, 'num_comments').reverse(),
   POINTS: list => sortBy(list, 'points').reverse(),
-};
-
-const styles = {
-  largeColumn: {
-    width: '40%',
-  },
-  midColumn: {
-    width: '30%',
-  },
-  smallColumn: {
-    width: '10%',
-  },
 };
 
 export default class Table extends React.Component {
@@ -59,34 +49,34 @@ export default class Table extends React.Component {
     return (
       <div className="table">
         <div className="table-header">
-      <span style={styles.largeColumn}>
+      <span className="largeColumn">
         <Sort
           sortKey={'TITLE'}
           onSort={this.onSort}
           activeSortKey={sortKey}
         >
-          Title
+          Titre
         </Sort>
       </span>
-          <span style={styles.midColumn}>
+          <span className="midColumn">
         <Sort
           sortKey={'AUTHOR'}
           onSort={this.onSort}
           activeSortKey={sortKey}
         >
-          Author
+          Auteur
         </Sort>
       </span>
-          <span style={styles.smallColumn}>
+          <span className="smallColumn">
         <Sort
           sortKey={'COMMENTS'}
           onSort={this.onSort}
           activeSortKey={sortKey}
         >
-          Comments
+          Commentaires
         </Sort>
       </span>
-          <span style={styles.smallColumn}>
+          <span className="smallColumn">
         <Sort
           sortKey={'POINTS'}
           onSort={this.onSort}
@@ -95,24 +85,24 @@ export default class Table extends React.Component {
           Points
         </Sort>
       </span>
-          <span style={styles.smallColumn}>
-        Archive
+          <span className="smallColumn">
+        Archiver
       </span>
         </div>
         {reverseSortedList.map(item =>
           <div key={item.objectID} className="table-row">
-          <span style={styles.largeColumn}>
+          <span className="largeColumn">
             <a href={item.url}>{item.title}</a>
           </span>
-            <span style={styles.midColumn}>{item.author}</span>
-            <span style={styles.smallColumn}>{item.num_comments}</span>
-            <span style={styles.smallColumn}>{item.points}</span>
-            <span style={styles.smallColumn}>
+            <span className="midColumn">{item.author}</span>
+            <span className="smallColumn">{item.num_comments}</span>
+            <span className="smallColumn">{item.points}</span>
+            <span className="smallColumn">
               <Button
                 onClick={() => onDismiss(item.objectID)}
                 className="button-inline"
               >
-                Dismiss
+                Supprimer
               </Button>
             </span>
           </div>
