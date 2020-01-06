@@ -13,8 +13,17 @@ import {
 import Search from "../Search";
 import Table from "../Table";
 import Button from '../Button';
+import Loader from "../Loader";
 
 require('./index.css');
+
+/**
+ *    High Order Function which
+ *    concats oldHits (the previously cached pages for this searchKey)
+ *    with hits (the hits response from a requested page on the server)
+ *    stores in cache (results[searchKey]) all the hits computed
+ *    and sets isLoading to false
+ */
 
 const updateSearchTopStoriesState = (hits, page) => (prevState) => {
   const { searchKey, results } = prevState;
@@ -36,6 +45,30 @@ const updateSearchTopStoriesState = (hits, page) => (prevState) => {
     isLoading: false
   };
 };
+
+/**
+ * High Order Component
+ * which displays the Component passed as param(error taken out)
+ * or the error message depending on the error state
+ * @param Component the component to render is error is null
+ * @returns {function({error: *, [p: string]: *}): *}
+ */
+
+const withError = (Component) => ({error, ...rest}) =>
+  error
+    ? <div className="interactions">
+      <p>Something went wrong...</p>
+    </div>
+    : <Component {...rest} />;
+
+const TableWithError = withError(Table);
+
+const withLoading = (Component) => ({ isLoading, ...rest }) =>
+  isLoading
+    ? <Loader>Loading...</Loader>
+    : <Component {...rest} />;
+
+const ButtonWithLoading = withLoading(Button);
 
 class App extends Component {
 
@@ -155,24 +188,16 @@ class App extends Component {
             onDismiss={this.onDismiss}
           />
         <div className="interactions">
-          <Button
+          <ButtonWithLoading
             isLoading={isLoading}
             onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}
           >
             More
-          </Button>
+          </ButtonWithLoading>
         </div>
       </div>
     );
   }
 }
 
-const withError = (Component) => ({error, ...rest}) =>
-  error
-    ? <div className="interactions">
-      <p>Something went wrong...</p>
-    </div>
-    : <Component {...rest} />;
-
-const TableWithError = withError(Table);
 export default App;

@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import Loader from "../Loader";
 
 const Button = ({ onClick, className, children }) =>
   <button
@@ -21,11 +20,4 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const withLoading = (Component) => ({ isLoading, ...rest }) =>
-  isLoading
-    ? <Loader>Loading...</Loader>
-    : <Component {...rest} />;
-
-const ButtonWithLoading = withLoading(Button);
-
-export default ButtonWithLoading;
+export default Button;

@@ -2,35 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d377950c-5538-481b-bd15-8a1f640e934c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/App/App.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/App/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/App/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Button/Button.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Loader/Loader.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Loader/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Search/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Table/Table.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Table/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/constants/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sandbox/Counter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sandbox/Developer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sandbox/Filter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sandbox/FilterNMap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sandbox/Map.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sandbox/WithLoading.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Search/Search.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Button/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Button/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Button/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,12 +166,24 @@
       <updated>1578216558051</updated>
       <workItem from="1578216559765" duration="328000" />
       <workItem from="1578216910667" duration="36034000" />
-      <workItem from="1578266153920" duration="8797000" />
+      <workItem from="1578266153920" duration="9754000" />
     </task>
+    <task id="LOCAL-00001" summary="first push">
+      <created>1578304099540</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1578304099540</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first push" />
+    <option name="LAST_COMMIT_MESSAGE" value="first push" />
   </component>
   <component name="WindowStateProjectService">
     <state x="320" y="115" key="#ESLint" timestamp="1578265895816">
@@ -213,10 +199,10 @@
     </state>
     <state x="100" y="0" width="1240" height="900" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1440.900@0.0.1440.900" timestamp="1578272306638" />
     <state x="100" y="0" width="1240" height="900" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.23.1440.797@0.23.1440.797" timestamp="1578275170318" />
-    <state x="195" y="52" key="CommitChangelistDialog2" timestamp="1578304077773">
+    <state x="195" y="52" key="CommitChangelistDialog2" timestamp="1578304099157">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="195" y="52" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1578304077773" />
+    <state x="195" y="52" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1578304099157" />
     <state width="1398" height="272" key="GridCell.Tab.0.bottom" timestamp="1578304077843">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -285,6 +271,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="221" y="63" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1578223301168" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1578304226721">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1578304226721" />
     <state x="100" y="87" width="1240" height="791" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1578267753257">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
